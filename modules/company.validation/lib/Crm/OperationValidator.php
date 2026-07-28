@@ -27,7 +27,11 @@ final class OperationValidator
             return null;
         }
 
-        if ($item->getCategoryId() !== $this->config['categoryId']) {
+        $categoryId = $item->getCategoryId();
+
+        // проверка categoryId должна учитывать, что у нового элемента категория может быть не установлена.
+        // Достаточно проверять только если категория явно задана и отличается от целевой
+        if ($categoryId !== null && $categoryId !== $this->config['categoryId']) {
             return null;
         }
 
