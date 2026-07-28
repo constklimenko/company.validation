@@ -25,12 +25,13 @@ final class Validator
         $emptyFields = [];
         $requiredFields = $this->config['fieldsMap'];
 
+        $map = array_flip($this->config['fields']);
 
         foreach ($requiredFields as $key => $item) {
             $fieldName = $this->config['fields'][$key];
             $value = $data[$fieldName] ?? null;
 
-            if (EmptyValueChecker::isEmpty($value, $fieldName)) {
+            if (EmptyValueChecker::isEmpty($value, $map[$fieldName])) {
                 $emptyFields[] = $item;
             }
         }
