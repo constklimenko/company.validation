@@ -32,8 +32,11 @@ final class ValidationResult
         }
 
         $message = 'Невозможно сохранить элемент. Заполните обязательные поля:';
-        foreach ($this->emptyFields as $field) {
-            $message .= "\n— " . $field;
+
+        $fieldsList = $this->getEmptyFields();
+        foreach ($fieldsList as $key => $field) {
+            $message .= "\n " . $field ;
+            if($key < count($fieldsList) - 1) $message .= ",";
         }
 
         return $message;
