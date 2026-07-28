@@ -19,6 +19,13 @@ final class SmartProcessConfig
                 'acts' => 'UF_CRM_4_ACTS',
                 'photos' => 'UF_CRM_4_PHOTOS',
             ],
+            'fieldsMap' => [
+            'actNumber' => 'Номер акта',
+            'actDate' => 'Дата акта',
+            'acts' => 'Файлы актов',
+            'photos' => 'Фотографии',
+            ],
+
         ];
     }
 }
