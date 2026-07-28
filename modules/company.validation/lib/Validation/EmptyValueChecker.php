@@ -20,6 +20,9 @@ final class EmptyValueChecker
         if ($value === null) {
             return true;
         }
+        if ($value === false) {
+            return true;
+        }
 
         if ($value === '') {
             return true;
