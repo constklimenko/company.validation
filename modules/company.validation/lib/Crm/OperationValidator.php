@@ -7,7 +7,6 @@ namespace Company\Validation\Crm;
 use Bitrix\Crm\Item;
 use Bitrix\Crm\Model\Dynamic\TypeTable;
 use Bitrix\Crm\Service\Factory\Dynamic;
-use Bitrix\Main\ArgumentException;
 use Bitrix\Main\Error;
 use Bitrix\Main\Result;
 use Company\Validation\Validation\Validator;
@@ -22,9 +21,6 @@ final class OperationValidator
         $this->config = $config;
     }
 
-    /**
-     * @throws ArgumentException
-     */
     public function validate(Item $item): ?Result
     {
         if ($item->getEntityTypeId() !== $this->config['entityTypeId']) {
@@ -50,18 +46,18 @@ final class OperationValidator
         return $result;
     }
 
-    /**
-     * @throws ArgumentException
-     */
     private function buildFinalState(Item $item): array
     {
         $finalData = [];
 
         if (!$item->isNew()) {
-            $storedItem = $this->getFactory()->getItem($item->getId());
-            if ($storedItem !== null) {
-                foreach ($this->config['fields'] as $fieldName) {
-                    $finalData[$fieldName] = $storedItem->get($fieldName);
+            $factory = $this->getFactory();
+            if ($factory !== null) {
+                $storedItem = $factory->getItem($item->getId());
+                if ($storedItem !== null) {
+                    foreach ($this->config['fields'] as $fieldName) {
+                        $finalData[$fieldName] = $storedItem->get($fieldName);
+                    }
                 }
             }
         }
@@ -75,10 +71,13 @@ final class OperationValidator
         return $finalData;
     }
 
-    private function getFactory(): Dynamic
+    private function getFactory(): ?Dynamic
     {
         if ($this->dynamicFactory === null) {
             $type = TypeTable::getByEntityTypeId($this->config['entityTypeId'])->fetchObject();
+            if ($type === null) {
+                return null;
+            }
             $this->dynamicFactory = new Dynamic($type);
         }
 
