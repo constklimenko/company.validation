@@ -11,4 +11,8 @@ Loader::registerNamespace(
     __DIR__ . '/lib'
 );
 
-
+\Bitrix\Main\EventManager::getInstance()->addEventHandler(
+    'main',
+    'OnProlog',
+    [\Company\Validation\Event\Handler::class, 'onProlog']
+);
