@@ -30,7 +30,7 @@ final class Validator
             $fieldName = $this->config['fields'][$key];
             $value = $data[$fieldName] ?? null;
 
-            if (EmptyValueChecker::isEmpty($value)) {
+            if (EmptyValueChecker::isEmpty($value, $fieldName)) {
                 $emptyFields[] = $item;
             }
         }

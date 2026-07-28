@@ -14,12 +14,18 @@ final class EmptyValueChecker
      *  пустая строка;
      *  пустой массив
      *  массив пустых элементов
+     *  нулевая дата
      */
-    public static function isEmpty(mixed $value): bool
+    public static function isEmpty(mixed $value, $fieldName = ''): bool
     {
+        if($fieldName == 'actDate' && $value == 0){
+            return true;
+        }
+
         if ($value === null) {
             return true;
         }
+
         if ($value === false) {
             return true;
         }
