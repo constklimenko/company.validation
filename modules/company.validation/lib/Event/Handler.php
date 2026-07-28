@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace Company\Validation\Event;
 
-use Bitrix\Crm\Service\Container;
-use Bitrix\Crm\Service\Operation;
 use Company\Validation\Config\SmartProcessConfig;
 use Company\Validation\Crm\CustomFactory;
-use Company\Validation\Crm\ValidationAction;
 
 
 class Handler
