@@ -13,6 +13,7 @@ final class EmptyValueChecker
      *  null;
      *  пустая строка;
      *  пустой массив
+     *  массив пустых элементов
      */
     public static function isEmpty(mixed $value): bool
     {
@@ -24,7 +25,17 @@ final class EmptyValueChecker
             return true;
         }
 
-        if (is_array($value) && count($value) === 0) {
+        if (is_array($value)) {
+            if (count($value) === 0) {
+                return true;
+            }
+
+            foreach ($value as $item) {
+                if ($item !== null) {
+                    return false;
+                }
+            }
+
             return true;
         }
 
