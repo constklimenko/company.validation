@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Company\Validation\Validation;
 
-class Validator
+final class Validator
 {
     private array $config;
 

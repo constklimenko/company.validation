@@ -12,7 +12,7 @@ use Bitrix\Main\Error;
 use Bitrix\Main\Result;
 use Company\Validation\Validation\Validator;
 
-class OperationValidator
+final class OperationValidator
 {
     private array $config;
     private ?Dynamic $dynamicFactory = null;

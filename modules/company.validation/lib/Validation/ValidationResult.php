@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Company\Validation\Validation;
 
-class ValidationResult
+final class ValidationResult
 {
     private bool $success;
     private array $emptyFields;
@@ -18,6 +18,11 @@ class ValidationResult
     public function isSuccess(): bool
     {
         return $this->success;
+    }
+
+    public function getEmptyFields(): array
+    {
+        return $this->emptyFields;
     }
 
     public function getErrorMessage(): string

@@ -8,7 +8,7 @@ use Company\Validation\Config\SmartProcessConfig;
 use Company\Validation\Crm\CustomFactory;
 
 
-class Handler
+final class Handler
 {
     public static function onProlog(): void
     {

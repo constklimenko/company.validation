@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Company\Validation\Crm;
 
 use Bitrix\Crm\Model\Dynamic\TypeTable;
@@ -9,7 +11,7 @@ use Bitrix\Crm\Item;
 use Bitrix\Crm\Service\Context;
 use Bitrix\Crm\Service\Operation;
 
-class CustomFactory extends Dynamic
+final class CustomFactory extends Dynamic
 {
     private array $config;
     public function __construct()
@@ -47,7 +49,7 @@ class CustomFactory extends Dynamic
         return $operation;
     }
 
-    protected function registerBeforeSaveActions(Operation\Update | Operation\Add  &$operation): void
+    protected function registerBeforeSaveActions(Operation\Update | Operation\Add $operation): void
     {
         $actions = [
             new ValidationAction()

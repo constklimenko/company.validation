@@ -9,7 +9,7 @@ use Bitrix\Main\ArgumentException;
 use Bitrix\Main\Result;
 use Company\Validation\Config\SmartProcessConfig;
 
-class ValidationAction extends Action
+final class ValidationAction extends Action
 {
     /**
      * @throws ArgumentException
